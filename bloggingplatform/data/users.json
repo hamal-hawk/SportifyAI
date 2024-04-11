@@ -1,0 +1,34 @@
+{
+  "users": [
+    {
+      "id": "admin",
+      "password": "admin",
+      "enabled": true
+    },
+    {
+      "id": "moderator",
+      "password": "moderator",
+      "enabled": true
+    },
+    {
+      "id": "haren",
+      "password": "haren",
+      "enabled": true
+    },
+    {
+      "id": "test",
+      "password": "test",
+      "enabled": true
+    },
+    {
+      "id": "adf",
+      "password": "adf",
+      "enabled": false
+    },
+    {
+      "id": "noyal",
+      "password": "noyal",
+      "enabled": true
+    }
+  ]
+}

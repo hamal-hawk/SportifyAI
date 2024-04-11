@@ -1,0 +1,10 @@
+{
+  "blogs": [
+    {
+      "id": "fe3d",
+      "title": "Sample blog :)",
+      "body": "all good",
+      "author": "haren"
+    }
+  ]
+}
