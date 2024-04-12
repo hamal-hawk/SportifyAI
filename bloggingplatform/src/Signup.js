@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 export default function Signup(){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [persona, setPersona] = useState('');
     const [text, setText] = useState('');
     const [dob, setDob] = useState('');
     const navigate = useNavigate();
@@ -15,7 +16,7 @@ export default function Signup(){
             headers: {
                 'Content-Type':'application/json'
             },
-            body: JSON.stringify({id: username, password, enabled: true})
+            body: JSON.stringify({id: username, password, persona, enabled: true})
         })
         .then(
             ()=>navigate('/')
@@ -59,6 +60,13 @@ export default function Signup(){
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
+
+                <label> Persona </label>
+                <select value={persona} onChange={(e) => setPersona(e.target.value)}>
+                    <option value="student"> Student </option>
+                    <option value="faculty"> Faculty </option>
+                    <option value="moderator"> Moderator </option>
+                </select>
             
                 {<button> Signup </button>}
             </form>

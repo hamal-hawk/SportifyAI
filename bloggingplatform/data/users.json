@@ -3,31 +3,25 @@
     {
       "id": "admin",
       "password": "admin",
+      "persona": "admin",
       "enabled": true
     },
     {
       "id": "moderator",
       "password": "moderator",
+      "persona": "moderator",
       "enabled": true
     },
     {
       "id": "haren",
       "password": "haren",
+      "persona": "student",
       "enabled": true
     },
     {
-      "id": "test",
-      "password": "test",
-      "enabled": true
-    },
-    {
-      "id": "adf",
-      "password": "adf",
-      "enabled": false
-    },
-    {
-      "id": "noyal",
-      "password": "noyal",
+      "id": "rick",
+      "password": "rick",
+      "persona": "faculty",
       "enabled": true
     }
   ]

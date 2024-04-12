@@ -8,14 +8,17 @@ import { useState } from 'react';
 import Login from './Login';
 import Signup from './Signup';
 import UsersList from './UsersList';
+import useFetch from "./Fetch"
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [user, setUser] = useState();
+  const [user, setUser] = useState('');
+  const {data: userList, isPending, error} = useFetch('http://localhost:8001/users');
   return (
     <Router>
         <div className="App">
-          <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser} user = {user}/>
+          <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser} user = {user}
+          userList = {userList} isPending = {isPending}/>
           <div className='content'>
           <Routes>
             <Route path="/" element = {<Login setLoggedIn = {setLoggedIn} setUser = {setUser}/>}/>
@@ -23,7 +26,7 @@ function App() {
             {loggedIn && <Route path="/create" element = {<Create user = {user}/>}/>}
             {loggedIn && <Route path="/blogs/:id" element = {<BlogPost user = {user}/>}/>}
             {!loggedIn && <Route path="/signup" element = {<Signup/>}/>}
-            {loggedIn && user.id === 'admin' && <Route path="/users" element = {<UsersList/>}/>}
+            {loggedIn && user === 'admin' && <Route path="/users" element = {<UsersList userList={userList}/>}/>}
             <Route path="*" element = {<NotFound/>}/>
           </Routes>
           </div>

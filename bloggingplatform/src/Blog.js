@@ -28,7 +28,7 @@ export default function BlogPost({user}){
                 </article>
             )
             }
-            {(user === 'admin' || user === 'moderator' || (!isPending && user === blog.author)) && <button onClick={handleDelete}> Delete </button>}
+            {(user.persona === 'admin' || user.persona === 'moderator' || (!isPending && user.id === blog.author)) && <button onClick={handleDelete}> Delete </button>}
         </div>
     )
 }

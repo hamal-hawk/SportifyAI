@@ -1,28 +1,19 @@
 import Switch from '@mui/material/Switch';
-import { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
-import useFetch from "./Fetch"
+import { useState } from "react";
 
-export default function UsersList(){
-    let {data: usersList, isPending, error} = useFetch('http://localhost:8001/users');
-    const navigate = useNavigate();
-    const [userEnabled, setUserEnabled] = useState(new Map());
-
-    useEffect(() => {
-        if(!isPending){
-            let map = new Map();
-            for(let user of usersList){
-                map.set(user.id, user.enabled);
-            }
-            setUserEnabled(map);
-        }
-    }, [isPending, usersList])
+export default function UsersList({userList}){
+    let map = new Map();
+    for(let user of userList){
+        map.set(user.id, user.enabled);
+    }
+    const [usersList, setUsersList] = useState(userList)
+    const [userEnabled, setUserEnabled] = useState(map);
 
 
 //implement user delete (function to handle delete request to users)
-    function handleChecked(e){
+    function handleChecked(e){ 
         let selectedUser = usersList.filter((user) => user.id === e.target.value)[0];
-        const newMap = new Map(userEnabled);
+        const newMap = new Map(map);
         newMap.set(selectedUser.id, e.target.checked);
         setUserEnabled(newMap);
         fetch('http://localhost:8001/users/'+selectedUser.id, {
@@ -39,7 +30,12 @@ export default function UsersList(){
         fetch('http://localhost:8001/users/'+selectedUserId, {
             method: 'DELETE'
         })
-        .then(() => navigate('/home'))
+        .then(
+            ()=>{
+                const newList = usersList.filter((user) => user.id !== selectedUserId);
+                setUsersList(newList);
+            }
+        );
 
     }
     
@@ -48,7 +44,7 @@ export default function UsersList(){
     return (
         <div>
            <h1> Users </h1> 
-            {!isPending && userEnabled.size !== 0 && usersList.filter(user => user.persona != 'admin').map((user)=>{
+            {usersList.filter(user => user.id != 'admin').map((user)=>{
                 return (
                     <div className='users-list' key={user.id}>
                         <h2> {user.id} </h2>

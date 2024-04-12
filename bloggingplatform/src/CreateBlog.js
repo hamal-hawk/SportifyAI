@@ -12,9 +12,8 @@ export default function CreateBlog({user}){
     function handleSubmit(e){
         e.preventDefault();
         setIsPending(true);
-        setAuthor(user);
-        console.log("User: "+user);
-        const blog = {title, body, author: user};
+        setAuthor(user.id);
+        const blog = {title, body, author: user.id};
         fetch('http://localhost:8000/blogs', {
             method :'POST',
             headers: {'Content-Type': 'application/json'},

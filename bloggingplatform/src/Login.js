@@ -12,7 +12,7 @@ export default function Login({setLoggedIn, setUser}){
         .then(user => {
             if(user.enabled && password === user.password){
                 setLoggedIn(true);
-                setUser(user.id);
+                setUser(user);
                 navigate("/home");
             }
             else{

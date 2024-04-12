@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom';
 
-export default function Navbar({loggedIn, setLoggedIn, setUser, user}){
+export default function Navbar({loggedIn, setLoggedIn, setUser, user, isPending}){
 
     function logoutHandle(){
         setLoggedIn(false);
@@ -14,7 +14,7 @@ export default function Navbar({loggedIn, setLoggedIn, setUser, user}){
             {loggedIn && <Link to="/create"> Create Blog </Link>}
             {loggedIn && <Link to="/" onClick={logoutHandle}> Logout </Link>}
             {!loggedIn && <Link to="/signup"> Signup </Link>}
-            {loggedIn && user.id === 'admin' && <Link to="/users"> Users </Link>}
+            {loggedIn && !isPending && user === 'admin' && <Link to="/users"> Users </Link>}
             </div>
         </div>
     )
