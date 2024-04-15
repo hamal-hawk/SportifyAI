@@ -1,10 +1,115 @@
 {
   "blogs": [
     {
-      "id": "b8c1",
+      "id": "b20b",
       "title": "asdf",
       "body": "asdf",
-      "author": "admin"
+      "author": "admin",
+      "category": "technology",
+      "comments": [
+        {
+          "comment": "asdfasdf",
+          "author": "admin"
+        }
+      ]
+    },
+    {
+      "id": "9809",
+      "title": "hey guys im new",
+      "body": "tell whats up boys",
+      "author": "raj",
+      "category": "campus",
+      "comments": [
+        {
+          "comment": "welcome raj",
+          "author": "admin"
+        },
+        {
+          "comment": "gada",
+          "author": "admin"
+        }
+      ]
+    },
+    {
+      "id": "a07e",
+      "title": "asdfasd",
+      "body": "afsdf",
+      "author": "admin",
+      "category": "",
+      "comments": []
+    },
+    {
+      "id": "046b",
+      "title": "RAJ",
+      "body": "raj",
+      "author": "raj",
+      "category": "",
+      "comments": []
+    },
+    {
+      "id": "f9f1",
+      "title": "raj",
+      "body": "raj",
+      "author": "raj",
+      "category": "",
+      "comments": []
+    },
+    {
+      "id": "e4bd",
+      "title": "dost",
+      "body": "dost",
+      "author": "raj",
+      "category": "",
+      "comments": [
+        {
+          "comment": "das",
+          "author": "admin"
+        },
+        {
+          "comment": "sdfdfs",
+          "author": "admin"
+        },
+        {
+          "comment": "asdfasdf",
+          "author": "admin"
+        },
+        {
+          "comment": "asfasdf",
+          "author": "admin"
+        },
+        {
+          "comment": "asdfsaf",
+          "author": "admin"
+        },
+        {
+          "comment": "asdfas",
+          "author": "admin"
+        },
+        {
+          "comment": "wow",
+          "author": "admin"
+        },
+        {
+          "comment": "www",
+          "author": "admin"
+        },
+        {
+          "comment": "sadfasdf",
+          "author": "admin"
+        },
+        {
+          "comment": "rocky",
+          "author": "admin"
+        }
+      ]
+    },
+    {
+      "title": "raj",
+      "body": "rajuu",
+      "author": "raj",
+      "category": "",
+      "comments": [],
+      "id": "1KhP3m2"
     }
   ]
 }

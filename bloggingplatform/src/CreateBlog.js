@@ -5,15 +5,14 @@ export default function CreateBlog({user}){
 
     const [title, setTitle] = useState("");
     const [body, setBody] = useState("");
-    const [author, setAuthor] = useState("");
+    const [category, setCategory] = useState("academic-resources");
     const[isPending, setIsPending] = useState(false);
     const navigate = useNavigate();
 
     function handleSubmit(e){
         e.preventDefault();
         setIsPending(true);
-        setAuthor(user.id);
-        const blog = {title, body, author: user.id};
+        const blog = {title, body, author: user.id, category: category, comments: new Array()};
         fetch('http://localhost:8000/blogs', {
             method :'POST',
             headers: {'Content-Type': 'application/json'},
@@ -43,6 +42,20 @@ export default function CreateBlog({user}){
                     onChange={(e) => setBody(e.target.value)}
                     required
                 />
+                <label> Category </label>
+                <select value={category} onChange={(e) => setCategory(e.target.value)}>
+                <option value="academic-resources">Academic Resources</option>
+                <option value="career-services">Career Services</option>
+                <option value="campus">Campus</option>
+                <option value="culture">Culture</option>
+                <option value="local-community-resources">Local Community Resources</option>
+                <option value="social">Social</option>
+                <option value="sports">Sports</option>
+                <option value="health-and-wellness">Health and Wellness</option>
+                <option value="technology">Technology</option>
+                <option value="travel">Travel</option>
+                <option value="alumni">Alumni</option>
+                </select>
                 
                  {!isPending && <button> Add blog </button>}
                  {isPending && <button disabled> Adding... </button>}

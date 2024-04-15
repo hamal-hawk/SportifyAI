@@ -1,9 +1,19 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function Login({setLoggedIn, setUser}){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+
+    function showErrorToast(){
+        toast.error("Invalid credentials", {
+            position: toast.POSITION_TOP_RIGHT
+        });
+
+    }
 
     function handleLogin(e){
         e.preventDefault();
@@ -16,11 +26,11 @@ export default function Login({setLoggedIn, setUser}){
                 navigate("/home");
             }
             else{
-                console.log("Wrong password"); //add something later
+                showErrorToast();
             }
         })
         .catch((err) =>{
-            console.log(err.message);
+            showErrorToast();
         })
         
     }
@@ -45,6 +55,7 @@ export default function Login({setLoggedIn, setUser}){
                 />
                 
                  <button> Login </button>
+                 <ToastContainer />
             </form>
         </div>
     )

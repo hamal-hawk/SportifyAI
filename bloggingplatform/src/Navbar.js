@@ -1,4 +1,5 @@
 import {Link} from 'react-router-dom';
+import Search from './Search';
 
 export default function Navbar({loggedIn, setLoggedIn, setUser, user}){
 
@@ -9,6 +10,7 @@ export default function Navbar({loggedIn, setLoggedIn, setUser, user}){
     return (
         <div className="navbar">
             <h1> The blog. </h1>
+            {loggedIn && <Search/>}
             <div className="links">
             {loggedIn && <Link to="/home"> Home </Link>}
             {loggedIn && <Link to="/create"> Create Blog </Link>}

@@ -9,6 +9,10 @@ export default function Signup(){
     const [dob, setDob] = useState('');
     const navigate = useNavigate();
 
+    function routeLogin(){
+       navigate('/');
+    }
+
     function handleSignup(e){
         e.preventDefault();
         fetch('http://localhost:8001/users', {
@@ -65,11 +69,17 @@ export default function Signup(){
                 <select value={persona} onChange={(e) => setPersona(e.target.value)}>
                     <option value="student"> Student </option>
                     <option value="faculty"> Faculty </option>
+                    <option value="staff"> Staff </option>
                     <option value="moderator"> Moderator </option>
                 </select>
             
-                {<button> Signup </button>}
+                <button> Signup </button>
             </form>
+            <div className="create-login">
+            <label> Already have an account? <t/>
+                    <button onClick={() => routeLogin()}> Login </button> 
+            </label>
+            </div>
         </div>
     )
 }

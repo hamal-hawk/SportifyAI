@@ -1,25 +1,30 @@
 import Switch from '@mui/material/Switch';
 import { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
 import useFetch from "./Fetch"
 
 export default function UsersList(){
-    let {data: usersList, isPending, error} = useFetch('http://localhost:8001/users');
-    const navigate = useNavigate();
+    let {data: initialUserList, isPending, error} = useFetch('http://localhost:8001/users');
     const [userEnabled, setUserEnabled] = useState(new Map());
+    const [usersList, setUsersList] = useState(new Array());
 
     useEffect(() => {
         if(!isPending){
-            let map = new Map();
-            for(let user of usersList){
+            let list = new Array();
+            for(let user of initialUserList){
+                list.push(user);
+            }
+            setUsersList(list);
+
+            let map = new Map(); 
+            for(let user of initialUserList){
                 map.set(user.id, user.enabled);
             }
             setUserEnabled(map);
+
         }
-    }, [isPending, usersList])
+    }, [isPending]);
 
 
-//implement user delete (function to handle delete request to users)
     function handleChecked(e){
         let selectedUser = usersList.filter((user) => user.id === e.target.value)[0];
         const newMap = new Map(userEnabled);
@@ -30,16 +35,17 @@ export default function UsersList(){
             headers: {
                 'Content-Type':'application/json'
             },
-            body: JSON.stringify({id: selectedUser.id, password: selectedUser.password, enabled: e.target.checked})
+            body: JSON.stringify({id: selectedUser.id, password: selectedUser.password, persona: selectedUser.persona, enabled: e.target.checked})
         })
     }
 
     function handleDelete(e){
         let selectedUserId = e.target.value;
+        let arr = usersList.filter((user) => user.id !== selectedUserId);
+        setUsersList(arr);
         fetch('http://localhost:8001/users/'+selectedUserId, {
             method: 'DELETE'
-        })
-        .then(() => navigate('/home'))
+        });
 
     }
     
@@ -48,6 +54,7 @@ export default function UsersList(){
     return (
         <div>
            <h1> Users </h1> 
+           {console.log(usersList)}
             {!isPending && userEnabled.size !== 0 && usersList.filter(user => user.persona != 'admin').map((user)=>{
                 return (
                     <div className='users-list' key={user.id}>

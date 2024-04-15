@@ -13,15 +13,21 @@
       "enabled": true
     },
     {
-      "id": "haren",
-      "password": "haren",
-      "persona": "student",
+      "id": "moderator2",
+      "password": "moderator",
+      "persona": "moderator",
       "enabled": true
     },
     {
-      "id": "rick",
-      "password": "rick",
-      "persona": "faculty",
+      "id": "moderator3",
+      "password": "moderator",
+      "persona": "moderator",
+      "enabled": true
+    },
+    {
+      "id": "raj",
+      "password": "raj",
+      "persona": "",
       "enabled": true
     }
   ]
