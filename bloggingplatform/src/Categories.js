@@ -1,27 +1,26 @@
 import {Link} from 'react-router-dom';
 import useFetch from './Fetch';
 
-export default function Categories(){
+export default function Categories({loggedIn}){
 
     return (
         <div className="categories">
-            <div className="links">
-            <div className="links">
-                <Link to="categories/academic-resources">Academic Resources</Link>
-                <Link to="categories/career-services">Career Services</Link>
-                <Link to="categories/campus">Campus</Link>
-                <Link to="categories/culture">Culture</Link>
-                <Link to="categories/local-community-resources">Local Community Resources</Link>
-                <Link to="categories/social">Social</Link>
-                <Link to="categories/sports">Sports</Link>
-                <Link to="categories/health-and-wellness">Health and Wellness</Link>
-                <Link to="categories/technology">Technology</Link>
-                <Link to="categories/travel">Travel</Link>
-                <Link to="categories/alumni">Alumni</Link>
-            </div>
+            {loggedIn && <div className="links">
+                <Link to="categories/football">Football</Link>
+                <Link to="categories/basketball">Basketball</Link>
+                <Link to="categories/tennis">Tennis</Link>
+                <Link to="categories/swimming">Swimming</Link>
+                <Link to="categories/cycling">Cycling</Link>
+                <Link to="categories/volleyball">Volleyball</Link>
+                <Link to="categories/baseball">Baseball</Link>
+                <Link to="categories/gymnastics">Gymnastics</Link>
+                <Link to="categories/e-sports">E-sports</Link>
+                <Link to="categories/soccer">Soccer</Link>
+                <Link to="categories/golf">Golf</Link>
 
-            </div>
+            </div>}
+
 
         </div>
-    )
+)
 }

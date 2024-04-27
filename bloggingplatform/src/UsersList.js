@@ -35,7 +35,7 @@ export default function UsersList(){
             headers: {
                 'Content-Type':'application/json'
             },
-            body: JSON.stringify({id: selectedUser.id, password: selectedUser.password, persona: selectedUser.persona, enabled: e.target.checked})
+            body: JSON.stringify({id: selectedUser.id, password: selectedUser.password, persona: selectedUser.persona, enabled: e.target.checked, subscriptions: selectedUser.subscriptions, notifications: selectedUser.notifications})
         })
     }
 
@@ -59,6 +59,7 @@ export default function UsersList(){
                 return (
                     <div className='users-list' key={user.id}>
                         <h2> {user.id} </h2>
+                        <h5>- {user.persona} </h5>
                         <Switch
                         checked={userEnabled.get(user.id)}
                         value={user.id}

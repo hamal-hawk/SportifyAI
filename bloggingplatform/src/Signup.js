@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 export default function Signup(){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [persona, setPersona] = useState('');
+    const [persona, setPersona] = useState('student');
     const [text, setText] = useState('');
     const [dob, setDob] = useState('');
     const navigate = useNavigate();
@@ -20,7 +20,7 @@ export default function Signup(){
             headers: {
                 'Content-Type':'application/json'
             },
-            body: JSON.stringify({id: username, password, persona, enabled: true})
+            body: JSON.stringify({id: username, password, persona, enabled: true, subscriptions: [], notifications: []})
         })
         .then(
             ()=>navigate('/')

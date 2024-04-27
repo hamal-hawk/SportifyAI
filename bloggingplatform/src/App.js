@@ -19,14 +19,14 @@ function App() {
     <Router>
         <div className="App">
           <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser} user = {user}/>
-          <Categories/>
+          <Categories loggedIn = {loggedIn}/>
           <div className='content'>
           <Routes>
             <Route path="/" element = {<Login setLoggedIn = {setLoggedIn} setUser = {setUser}/>}/>
-            {loggedIn && <Route path="/home" element = {<Home/>}/>}
+            {loggedIn && <Route path="/home" element = {<Home user= {user}/>}/>}
             {loggedIn && <Route path="/create" element = {<Create user = {user}/>}/>}
             {loggedIn && <Route path="/blogs/:id" element = {<BlogPost user = {user}/>}/>}
-            {loggedIn && <Route path="/categories/:category" element = {<Category/>}/>}
+            {loggedIn && <Route path="/categories/:category" element = {<Category user = {user}/>}/>}
             {loggedIn && <Route path="/search/:input" element = {<SearchResults/>}/>}
             {loggedIn && <Route path="/search" element = {<SearchResults/>}/>}
             {!loggedIn && <Route path="/signup" element = {<Signup/>}/>}

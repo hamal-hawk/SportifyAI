@@ -4,31 +4,30 @@
       "id": "admin",
       "password": "admin",
       "persona": "admin",
-      "enabled": true
+      "enabled": true,
+      "subscriptions": [
+        "volleyball",
+        "swimming"
+      ],
+      "notifications": []
     },
     {
       "id": "moderator",
       "password": "moderator",
       "persona": "moderator",
-      "enabled": true
-    },
-    {
-      "id": "moderator2",
-      "password": "moderator",
-      "persona": "moderator",
-      "enabled": true
-    },
-    {
-      "id": "moderator3",
-      "password": "moderator",
-      "persona": "moderator",
-      "enabled": true
+      "enabled": true,
+      "subscriptions": [],
+      "notifications": []
     },
     {
       "id": "raj",
       "password": "raj",
-      "persona": "",
-      "enabled": true
+      "persona": "student",
+      "enabled": true,
+      "subscriptions": [
+        "tennis"
+      ],
+      "notifications": []
     }
   ]
 }

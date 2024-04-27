@@ -1,13 +1,18 @@
 import { useParams, useNavigate } from "react-router-dom"
 import useFetch from "./Fetch";
 import { useEffect, useState } from "react";
+import Switch from '@mui/material/Switch';
+import useFetchAI from "./apis/FetchAI";
 
 export default function BlogPost({user}){
     const id = useParams()['id'];
     const [comment, setComment] = useState();
-    let {data: blog, isPending, error} = useFetch(`http://localhost:8000/blogs/${id}`);
     const navigate = useNavigate();
     const [comments, setComments] = useState(new Array());
+    const [toggleAI, setToggleAI] = useState(false);
+    const [prompt, setPrompt] = useState("");
+    const {data: blog, isPending, error} = useFetch('http://localhost:8000/blogs/'+id);
+    const {dataAI, isPendingAI, errorAI} = useFetchAI(prompt);
 
     useEffect(() => {
         if(!isPending){
@@ -16,8 +21,19 @@ export default function BlogPost({user}){
                 list.push(comment);
             }
             setComments(list);
+            setPrompt(`Generate a customized comment for this blog post in less than 30 words: ${blog.title} - ${blog.body}`);
         }
     }, [isPending]);
+
+    function handleAI(e){
+        setToggleAI(e.target.checked);
+        if(!isPendingAI && e.target.checked){
+            setComment(dataAI.choices[0].message.content); //removing the double quotes
+        }
+        else{
+            setComment("");
+        }
+    }
 
     function handleDelete(){
         fetch(`http://localhost:8000/blogs/${id}`, {
@@ -32,16 +48,18 @@ export default function BlogPost({user}){
     function handleComment(e){
         e.preventDefault();
         let commentsList = comments.slice();
-        commentsList.push({comment, author: user.id});
+        commentsList.push({id: blog.comments.length, comment, author: user.id});
         blog.comments = commentsList;
         setComments(blog.comments);
-        console.log("ID: "+id);
         fetch(`http://localhost:8000/blogs/${id}`, {
             method: 'PUT',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(blog)
         })
-        .then(() => setComment(""));
+        .then(() => {
+            setComment("");
+            setToggleAI(false);
+        });
 
     }
 
@@ -67,7 +85,7 @@ export default function BlogPost({user}){
             {error && <div> Error fetching data </div>}
             {isPending && <div> Loading... </div>}
             {blog && comments.map(comment => 
-                (<article className="comment">
+                (<article className="comment" key={comment.id}>
                 <h5>{comment.author}</h5>
                 <div> {comment.comment} </div>
                 </article>)
@@ -83,6 +101,12 @@ export default function BlogPost({user}){
                     onChange={(e) => setComment(e.target.value)}
                     required
                 />
+                AI
+                <Switch
+                checked={toggleAI}
+                onChange={(e) => handleAI(e)}
+                />
+                <br/>
                 
                  {!isPending && <button> Add Comment </button>}
                  {isPending && <button disabled> Adding... </button>}

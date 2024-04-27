@@ -1,16 +1,30 @@
 import {Link} from 'react-router-dom';
 import Search from './Search';
+import NotificationBar from './NotificationBar';
+import RecPopup from './RecPopup';
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import { useState } from 'react';
 
 export default function Navbar({loggedIn, setLoggedIn, setUser, user}){
 
+    const GOOGLE_MAPS_API_KEY = 'AIzaSyB-Kqz7tXGLVWyP7kxc2jhieZAylxkgLZI';
+    const [loginRefresh, setLoginRefresh] = useState(true);
+
     function logoutHandle(){
         setLoggedIn(false);
-        setUser('');
+        setLoginRefresh(!loginRefresh);
+        setUser(null);
     }
     return (
         <div className="navbar">
-            <h1> The blog. </h1>
+            <h1> Sportify </h1>
             {loggedIn && <Search/>}
+            {loggedIn && <NotificationBar user={user}/>}
+            <LoadScript
+                googleMapsApiKey = {GOOGLE_MAPS_API_KEY}
+                loadingElement={<div>Loading...</div>}>
+            {loggedIn && <RecPopup user = {user}/>}
+            </LoadScript>
             <div className="links">
             {loggedIn && <Link to="/home"> Home </Link>}
             {loggedIn && <Link to="/create"> Create Blog </Link>}

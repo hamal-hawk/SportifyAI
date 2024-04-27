@@ -295,3 +295,20 @@
 .search-box button:hover {
   background-color: #0056b3;
 }
+
+.notification-bar {
+  margin-left: 100px;
+  position: relative;
+  display: inline-block;
+
+}
+
+.pop-button{
+  margin-left: 100px;
+  background: #f1356d;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
