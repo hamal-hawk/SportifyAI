@@ -5,15 +5,15 @@ Ensure you have the following installed and in hand:
 - Node.js
 - npm (Node Package Manager)
 - Elasticsearch 7.17.19
-- SERP API Key (Place it in the 'FetchGoogleResults.js' file in the 'frontend/src/apis' directory)
-- OpenAI API Key (Place it in the 'FetchAI.js' file in the 'frontend/src/apis' directory)
-- Google MAPS API Key (Place it in the 'Navbar.js' file in the 'frontend/src' directory)
+- SERP API Key (Place it in the 'FetchGoogleResults.js' file in the 'source_code/frontend/src/apis' directory)
+- OpenAI API Key (Place it in the 'FetchAI.js' file in the 'source_code/frontend/src/apis' directory)
+- Google MAPS API Key (Place it in the 'Navbar.js' file in the 'source_code/frontend/src' directory)
 
 ## Setup
 
 1. **Frontend Setup**
 
-   Navigate to the frontend directory from the project root, install the required packages, and start the frontend server:
+   Navigate to the source_code/frontend directory from the project root, install the required packages, and start the frontend server:
    
    ```bash
    cd frontend
@@ -37,7 +37,7 @@ Ensure you have the following installed and in hand:
    Navigate to the backend directory to install backend dependencies:
    
    ```bash
-   cd backend
+   cd source_code/backend
    npm install
    ```
 
