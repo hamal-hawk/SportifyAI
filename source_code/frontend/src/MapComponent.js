@@ -18,7 +18,7 @@ export default function MapComponent({ markers, userLocation }) {
         key={`${latitude}-${longitude}`}
         mapContainerStyle={containerStyle}
         center={{lat: latitude, lng: longitude}}
-        zoom={10}
+        zoom={9}
       >
 
         {markers.map(marker => {

@@ -20,7 +20,7 @@ export default function Signup(){
             headers: {
                 'Content-Type':'application/json'
             },
-            body: JSON.stringify({id: username, password, persona, enabled: true, subscriptions: [], notifications: []})
+            body: JSON.stringify({id: username, password, persona, enabled: true, subscriptions: [], notifications: [], search_keys: []})
         })
         .then(
             ()=>navigate('/')

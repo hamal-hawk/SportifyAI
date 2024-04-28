@@ -35,7 +35,7 @@ export default function UsersList(){
             headers: {
                 'Content-Type':'application/json'
             },
-            body: JSON.stringify({id: selectedUser.id, password: selectedUser.password, persona: selectedUser.persona, enabled: e.target.checked, subscriptions: selectedUser.subscriptions, notifications: selectedUser.notifications})
+            body: JSON.stringify({id: selectedUser.id, password: selectedUser.password, persona: selectedUser.persona, enabled: e.target.checked, subscriptions: selectedUser.subscriptions, notifications: selectedUser.notifications, search_keys: selectedUser.search_keys})
         })
     }
 

@@ -23,16 +23,6 @@ export default function Category({user}){
     ]));
     
 
-    // useEffect(() => {
-
-    //     let map = new Map(); 
-    //         for(let category of user.subscriptions){
-    //             map.set(category, true);
-    //         }
-    //     setSubscriptionStatus(map);
-
-
-    // }, []);
 
     function handleSubscribe(e){
         let newMap = new Map(subscriptionStatus);

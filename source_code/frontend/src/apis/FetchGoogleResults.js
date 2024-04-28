@@ -6,11 +6,20 @@ export default function useFetchGoogle(sports) {
     const [googleData, setGoogleData] = useState(null);
     const [isPendingGoogle, setIsPendingGoogle] = useState(true);
     const [errorGoogle, setErrorGoogle] = useState(null);
-    const SERP_API_KEY = 'b4e205c50f8dc82ad69e46049b1ff39056bdf634f4aff0d6784ba5aa81063456';
+    const SERP_API_KEY = 'YOUR_KEY';
+
+    function encodeUULE(location) {
+        const lengthChar = String.fromCharCode('a'.charCodeAt(0) + location.length);
+        const encodedLocation = btoa(lengthChar + location);
+        return `w+CAIQICI${encodedLocation}`;
+    }
+    
+
+
     useEffect(() => {
         if (!isPendingLocation && sports.length > 0) {
             setIsPendingGoogle(true);
-            const sportsEventsUrl = `https://serpapi.com/search.json?engine=google_events&q=${sports}&near=${location.city}&gl=us&hl=en&num=20&api_key=`+SERP_API_KEY;            
+            const sportsEventsUrl = `https://serpapi.com/search.json?engine=google_events&q=${sports}&location=${location.city}%2C+${location.region}%2C+${location.country_name.replace(" ", "+")}&gl=us&hl=en&num=20&api_key=`+SERP_API_KEY;            
             console.log("url: ", sportsEventsUrl);
             fetch(sportsEventsUrl)
             .then(res => res.json())

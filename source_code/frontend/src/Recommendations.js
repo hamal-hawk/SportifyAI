@@ -17,14 +17,24 @@ export default function Recommendations({onUpdate, user}){
     }
 
     function extractInterests(){
-        let interests = [];
+        let interests = new Set();
         if(!isPending){
             for(let blog of blogs.filter((blog) => blog.author === user.id)){
-                interests.push(blog.category);
+                interests.add(blog.category);
             }
         }
-        interests.push(...extractSubscriptions());
-        setSports(interests.join('+|+'));
+
+        extractSubscriptions().forEach(element => {
+            interests.add(element);
+        });
+
+        user.search_keys.forEach(element => {
+            interests.add(element);
+        })
+        // interests.push(...extractSubscriptions());
+        // interests.push(...user.search_keys);
+        setSports(Array.from(interests).join('+|+'));
+        console.log("Merged: ", sports);
 
     }
 

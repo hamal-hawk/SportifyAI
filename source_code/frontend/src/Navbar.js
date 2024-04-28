@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 export default function Navbar({loggedIn, setLoggedIn, setUser, user}){
 
-    const GOOGLE_MAPS_API_KEY = 'AIzaSyB-Kqz7tXGLVWyP7kxc2jhieZAylxkgLZI';
+    const GOOGLE_MAPS_API_KEY = 'YOUR_KEY';
     const [loginRefresh, setLoginRefresh] = useState(true);
 
     function logoutHandle(){
@@ -17,8 +17,8 @@ export default function Navbar({loggedIn, setLoggedIn, setUser, user}){
     }
     return (
         <div className="navbar">
-            <h1> Sportify </h1>
-            {loggedIn && <Search/>}
+            <h1> SportifyAI </h1>
+            {loggedIn && <Search user = {user}/>}
             {loggedIn && <NotificationBar user={user}/>}
             <LoadScript
                 googleMapsApiKey = {GOOGLE_MAPS_API_KEY}
