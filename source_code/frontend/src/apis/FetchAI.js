@@ -4,7 +4,7 @@ export default function useFetchAI(prompt){
     const [dataAI, setDataAI] = useState(null);
     const [isPendingAI, setIsPendingAI] = useState(true);
     const [errorAI, setErrorAI] = useState(null);
-    const OPEN_AI_KEY = "YOUR_KEY_AI";
+    const OPEN_AI_KEY = "YOUR_KEY";
 
     useEffect(() => {
         if(prompt.length > 0){
